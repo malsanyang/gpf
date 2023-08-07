@@ -7,7 +7,7 @@ export default function Show({data}){
 
     return (
         <div>
-            <h1>{data.title }</h1>
+            <h1 className='text-3xl font-bold underline'>{data.title }</h1>
             <p>this is me</p>
         </div>
     )
