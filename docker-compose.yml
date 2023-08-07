@@ -1,0 +1,113 @@
+version: '3.9'
+services:
+    laravel.test:
+        build:
+            context: .
+            dockerfile: docker-config/Dockerfile
+        image: malsanyang.com/laravel.test
+        extra_hosts:
+            - 'host.docker.internal:host-gateway'
+        ports:
+            - '${APP_PORT:-8000}:80'
+            - '${VITE_PORT:-5173}:${VITE_PORT:-5173}'
+        environment:
+            LARAVEL_SAIL: 1
+            XDEBUG_MODE: '${DOCKER_XDEBUG_MODE:-off}'
+            XDEBUG_CONFIG: '${DOCKER_XDEBUG_CONFIG:-client_host=host.docker.internal}'
+            IGNITION_LOCAL_SITES_PATH: '${PWD}'
+        volumes:
+            - '.:/var/www/html'
+        networks:
+            - laravel
+    mariadb:
+        image: 'mariadb:10'
+        ports:
+            - '${FORWARD_DB_PORT:-3306}:3306'
+        environment:
+            MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
+            MYSQL_ROOT_HOST: "%"
+            MYSQL_DATABASE: '${DB_DATABASE}'
+            MYSQL_USER: '${DB_USERNAME}'
+            MYSQL_PASSWORD: '${DB_PASSWORD}'
+            MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+        volumes:
+            - 'mariadb:/var/lib/mysql'
+        networks:
+            - laravel
+        healthcheck:
+            test: [ "CMD", "mysqladmin", "ping", "-p${DB_PASSWORD}" ]
+            retries: 3
+            timeout: 5s
+    redis:
+        image: 'redis:alpine'
+        ports:
+            - '${FORWARD_REDIS_PORT:-6379}:6379'
+        volumes:
+            - 'redis:/data'
+        networks:
+            - laravel
+        healthcheck:
+            test: [ "CMD", "redis-cli", "ping" ]
+            retries: 3
+            timeout: 5s
+    elastic:
+        image: docker.elastic.co/elasticsearch/elasticsearch:7.15.2
+        volumes:
+            - search:/usr/share/elasticsearch/data
+        networks:
+            - laravel
+        environment:
+            - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+            - xpack.security.enabled=false
+            - discovery.type=single-node
+        ulimits:
+            memlock:
+                soft: -1
+                hard: -1
+            nofile:
+                soft: 65536
+                hard: 65536
+        cap_add:
+            - IPC_LOCK
+        ports:
+            - 9200:9200
+    kibana:
+        image: docker.elastic.co/kibana/kibana:7.15.2
+        networks:
+            - laravel
+        environment:
+            - ELASTICSEARCH_HOSTS=http://elastic:9200
+        depends_on:
+            - elastic
+        ports:
+            - 5601:5601
+    mailhog:
+        image: 'mailhog/mailhog:latest'
+        ports:
+            - '${FORWARD_MAILHOG_DASHBOARD_PORT:-8025}:8025'
+            - '${FORWARD_MAILHOG_PORT:-1025}:1025'
+        networks:
+            - laravel
+    phpmyadmin:
+        image: phpmyadmin:latest
+        ports:
+            - '${FORWARD_PHPMYADMIN_PORT_PORT:-8080}:80'
+        environment:
+            - PMA_HOST=mariadb
+            - PMA_PASSWORD=${DB_PASSWORD}
+            - PMA_UPLOAD_LIMIT=100M
+            - UPLOAD_LIMIT=100M
+        networks:
+            - laravel
+
+networks:
+    laravel:
+        driver: bridge
+
+volumes:
+    mariadb:
+        driver: local
+    redis:
+        driver: local
+    search:
+        driver: local
