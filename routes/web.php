@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,8 +15,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [WelcomeController::class, 'show'])->middleware('auth');
 
-Route::get('/welcome', [WelcomeController::class, 'show']);
+Route::get('/home', [WelcomeController::class, 'show'])->middleware('auth');
+
+Route::prefix('auth')->group(function (){
+   Route::get('/login', [AuthController::class, 'login'])->name('login')->middleware('guest');
+   Route::post('authenticate', [AuthController::class, 'authenticate'])->name('auth.authenticate')->middleware('guest');
+   Route::get('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
+});
