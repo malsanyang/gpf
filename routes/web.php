@@ -22,5 +22,5 @@ Route::get('/home', [WelcomeController::class, 'show'])->middleware('auth');
 Route::prefix('auth')->group(function (){
    Route::get('/login', [AuthController::class, 'login'])->name('login')->middleware('guest');
    Route::post('authenticate', [AuthController::class, 'authenticate'])->name('auth.authenticate')->middleware('guest');
-   Route::get('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
+   Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
 });

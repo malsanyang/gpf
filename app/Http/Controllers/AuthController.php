@@ -37,7 +37,7 @@ class AuthController extends Controller
             return redirect('/');
         }
 
-        return back()->withErrors(['error' => 'Invalid credentials'])->onlyInput('email');
+        return back()->withErrors(['email' => 'Invalid credentials'])->onlyInput('email');
     }
 
     /**
