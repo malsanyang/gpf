@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Library\Auth\LocalRole;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -15,7 +16,7 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        User::firstOrCreate([
+        $users = User::firstOrCreate([
             'name' => 'Super Admin',
             'email' => 'dev@malsanyang.com'
         ],[
@@ -23,5 +24,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('secret'),
             'active' => true,
         ]);
+
+        $users->assignRole(LocalRole::ROLE_SUPER_ADMIN);
     }
 }

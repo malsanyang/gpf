@@ -2,8 +2,10 @@
 
 namespace App\Http\Middleware;
 
+use App\Transformers\UserTransformer;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
+use Spatie\Fractal\Facades\Fractal;
 
 class HandleInertiaRequests extends Middleware
 {
@@ -37,7 +39,7 @@ class HandleInertiaRequests extends Middleware
     public function share(Request $request): array
     {
         return array_merge(parent::share($request), [
-            //
+            'currentUser' => empty($request->user()) ? null : Fractal::item($request->user(), new UserTransformer())->toArray(),
         ]);
     }
 }

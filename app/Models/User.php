@@ -6,9 +6,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Log;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Models\Role;
 use Spatie\Permission\Traits\HasRoles;
 
+/**
+ * @property mixed $id
+ * @property mixed $name
+ * @property mixed email
+ * @property bool $active
+*/
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, HasRoles;
@@ -43,4 +51,16 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    /**
+     * @return string
+    */
+    public function getRoleName(): string
+    {
+        $roleNames = $this->roles()->get()->map(function(Role $role) {
+            return $role->name;
+        });
+
+        return $roleNames->join(', ');
+    }
 }
