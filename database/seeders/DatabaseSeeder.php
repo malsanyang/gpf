@@ -14,5 +14,10 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(RoleAndPermissionSeeder::class);
         $this->call(UserSeeder::class);
+        $this->call(CitizenSeeder::class);
+        $this->call(CourtSeeder::class);
+        $this->call(CriminalSeeder::class);
+        $this->call(PoliceStationSeeder::class);
+        $this->call(PrisonSeeder::class);
     }
 }

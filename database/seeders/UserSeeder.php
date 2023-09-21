@@ -17,14 +17,36 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         $users = User::firstOrCreate([
-            'name' => 'Super Admin',
-            'email' => 'dev@malsanyang.com'
+            'name' => 'Police Officer',
+            'email' => 'police@gpf.gm'
         ],[
             'email_verified_at' => Carbon::now(),
             'password' => Hash::make('secret'),
             'active' => true,
         ]);
 
-        $users->assignRole(LocalRole::ROLE_SUPER_ADMIN);
+        $users->assignRole(LocalRole::ROLE_POLICE_OFFICER);
+
+        $users = User::firstOrCreate([
+            'name' => 'Investigator',
+            'email' => 'investigator@gpf.gm'
+        ],[
+            'email_verified_at' => Carbon::now(),
+            'password' => Hash::make('secret'),
+            'active' => true,
+        ]);
+
+        $users->assignRole(LocalRole::ROLE_INVESTIGATOR);
+
+        $users = User::firstOrCreate([
+            'name' => 'Prosecutor',
+            'email' => 'prosecutor@gpf.gm'
+        ],[
+            'email_verified_at' => Carbon::now(),
+            'password' => Hash::make('secret'),
+            'active' => true,
+        ]);
+
+        $users->assignRole(LocalRole::ROLE_PROSECUTOR);
     }
 }

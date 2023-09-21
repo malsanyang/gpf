@@ -16,16 +16,36 @@ class RoleAndPermissionSeeder extends Seeder
      */
     public function run(): void
     {
-        Permission::firstOrCreate(['name' => LocalPermission::CAN_CREATE_USERS]);
-        Permission::firstOrCreate(['name' => LocalPermission::CAN_UPDATE_USERS]);
-        Permission::firstOrCreate(['name' => LocalPermission::CAN_DELETE_USERS]);
+        Permission::firstOrCreate(['name' => LocalPermission::CAN_VIEW_RECORD]);
+        Permission::firstOrCreate(['name' => LocalPermission::CAN_CREATE_RECORD]);
+        Permission::firstOrCreate(['name' => LocalPermission::CAN_UPDATE_RECORD]);
+        Permission::firstOrCreate(['name' => LocalPermission::CAN_DELETE_RECORD]);
+        Permission::firstOrCreate(['name' => LocalPermission::CAN_ADD_INVESTIGATOR_REPORT]);
+        Permission::firstOrCreate(['name' => LocalPermission::CAN_ADD_PROSECUTION_REPORT]);
 
-        $role = Role::firstOrCreate(['name' => LocalRole::ROLE_SUPER_ADMIN]);
+        $role = Role::firstOrCreate(['name' => LocalRole::ROLE_POLICE_OFFICER]);
 
         $role->givePermissionTo([
-            LocalPermission::CAN_CREATE_USERS,
-            LocalPermission::CAN_UPDATE_USERS,
-            LocalPermission::CAN_DELETE_USERS,
+            LocalPermission::CAN_VIEW_RECORD,
+            LocalPermission::CAN_CREATE_RECORD,
+            LocalPermission::CAN_UPDATE_RECORD,
+            LocalPermission::CAN_DELETE_RECORD,
+            LocalPermission::CAN_ADD_INVESTIGATOR_REPORT,
+            LocalPermission::CAN_ADD_PROSECUTION_REPORT,
+        ]);
+
+        $role = Role::firstOrCreate(['name' => LocalRole::ROLE_INVESTIGATOR]);
+
+        $role->givePermissionTo([
+            LocalPermission::CAN_VIEW_RECORD,
+            LocalPermission::CAN_ADD_INVESTIGATOR_REPORT,
+        ]);
+
+        $role = Role::firstOrCreate(['name' => LocalRole::ROLE_PROSECUTOR]);
+
+        $role->givePermissionTo([
+            LocalPermission::CAN_VIEW_RECORD,
+            LocalPermission::CAN_ADD_PROSECUTION_REPORT,
         ]);
     }
 }

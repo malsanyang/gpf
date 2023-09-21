@@ -28,12 +28,12 @@ Route::prefix('auth')->group(function (){
 });
 
 Route::prefix('user-management')->group(function () {
-    Route::get('/', [UserController::class, 'index'])->name('users.index')->middleware('can:' . LocalPermission::CAN_CREATE_USERS);
-    Route::get('/users', [UserController::class, 'index'])->name('users.index')->middleware('can:' . LocalPermission::CAN_CREATE_USERS);
-    Route::get('/users/create', [UserController::class, 'create'])->name('users.create')->middleware('can:' . LocalPermission::CAN_CREATE_USERS);
-    Route::get('/users/{id}', [UserController::class, 'show'])->name('users.show')->middleware('can:' . LocalPermission::CAN_CREATE_USERS);
-    Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('users.edit')->middleware('can:' . LocalPermission::CAN_UPDATE_USERS);
-    Route::post('/users', [UserController::class, 'store'])->name('users.store')->middleware('can:' . LocalPermission::CAN_CREATE_USERS);
-    Route::put('/users/{id}', [UserController::class, 'update'])->name('users.update')->middleware('can:' . LocalPermission::CAN_UPDATE_USERS);
-    Route::delete('/users/{id}', [UserController::class, 'delete'])->name('users.delete')->middleware('can:' . LocalPermission::CAN_DELETE_USERS);
+    Route::get('/', [UserController::class, 'index'])->name('users.index')->middleware('can:' . LocalPermission::CAN_VIEW_RECORD);
+    Route::get('/users', [UserController::class, 'index'])->name('users.index')->middleware('can:' . LocalPermission::CAN_VIEW_RECORD);
+    Route::get('/users/create', [UserController::class, 'create'])->name('users.create')->middleware('can:' . LocalPermission::CAN_CREATE_RECORD);
+    Route::get('/users/{id}', [UserController::class, 'show'])->name('users.show')->middleware('can:' . LocalPermission::CAN_VIEW_RECORD);
+    Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('users.edit')->middleware('can:' . LocalPermission::CAN_UPDATE_RECORD);
+    Route::post('/users', [UserController::class, 'store'])->name('users.store')->middleware('can:' . LocalPermission::CAN_CREATE_RECORD);
+    Route::put('/users/{id}', [UserController::class, 'update'])->name('users.update')->middleware('can:' . LocalPermission::CAN_UPDATE_RECORD);
+    Route::delete('/users/{id}', [UserController::class, 'delete'])->name('users.delete')->middleware('can:' . LocalPermission::CAN_DELETE_RECORD);
 })->middleware('auth');
