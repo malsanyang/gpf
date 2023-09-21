@@ -64,7 +64,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
             <div className="flex items-center justify-between gap-2 px-6 py-5.5 lg:py-6.5">
                 <Link href="/">
                     <img className="mx-auto h-10 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="Your Company" />
-                    <span className="mx-2">Docker Laravel</span>
+                    <span className="mx-2">Gambia Police Force</span>
                 </Link>
 
                 <button

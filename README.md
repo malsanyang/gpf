@@ -13,6 +13,8 @@ Next, navigate in your terminal to the directory you cloned this and run the fol
 - `docker-compose up -d --build`
 - `docker-compose exec app composer install`
 - `docker-compose exec app yarn install`
+- `docker-compose exec app php artisan migrate`
+- `docker-compose exec app php artisan db:seed`
 
 To build you assets during development run the command `docker-compose exec app yarn run dev` and `docker-compose exec app yarn run build` from production.
 
