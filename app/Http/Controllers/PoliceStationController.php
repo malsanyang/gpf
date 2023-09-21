@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CitizenRequest;
-use App\Models\Citizen;
+use App\Http\Requests\PoliceStationRequest;
+use App\Models\PoliceStation;
 use App\Traits\DataTransformer;
-use App\Transformers\CitizenTransformer;
+use App\Transformers\PoliceStationTransformer;
 use Exception;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Log;
 use Inertia\Inertia;
 use Inertia\Response;
 
-class CitizenController extends Controller
+class PoliceStationController extends Controller
 {
     use DataTransformer;
 
@@ -22,7 +22,7 @@ class CitizenController extends Controller
      */
     public function index() : Response
     {
-        return Inertia::render('Citizen/Index', $this->buildCollection(Citizen::all(), new CitizenTransformer()));
+        return Inertia::render('PoliceStation/Index', $this->buildCollection(PoliceStation::all(), new PoliceStationTransformer()));
     }
 
     /**
@@ -32,7 +32,7 @@ class CitizenController extends Controller
      */
     public function show(int $id): Response
     {
-        return Inertia::render('Citizen/Show', $this->buildItem(Citizen::findOrFail($id), new CitizenTransformer()));
+        return Inertia::render('PoliceStation/Show', $this->buildItem(PoliceStation::findOrFail($id), new PoliceStationTransformer()));
     }
 
     /**
@@ -40,24 +40,24 @@ class CitizenController extends Controller
      */
     public function create(): Response
     {
-        return Inertia::render('Citizen/Create');
+        return Inertia::render('PoliceStation/Create');
     }
 
     /**
-     * @param Citizen $citizen
-     * @param CitizenRequest $request
+     * @param PoliceStation $station
+     * @param PoliceStationRequest $request
      *
      * @return RedirectResponse
      */
-    public function store(Citizen $citizen, CitizenRequest $request): RedirectResponse
+    public function store(PoliceStation $station, PoliceStationRequest $request): RedirectResponse
     {
         try {
             DB::beginTransaction();
             $data = $this->sanitizePostToRequest($request->all(), $request);
-            $citizen->fill($this->toSnakeKeys($data))->save();
+            $station->fill($this->toSnakeKeys($data))->save();
             DB::commit();
 
-            return redirect('/citizens');
+            return redirect('/police-stations');
         } catch (Exception $e) {
             DB::rollBack();
             Log::error($e);
@@ -72,27 +72,27 @@ class CitizenController extends Controller
      */
     public function edit(int $id): Response
     {
-        return Inertia::render('Citizen/Edit', [
-            'citizen'  => $this->buildItem(Citizen::findOrFail($id), new CitizenTransformer())
+        return Inertia::render('PoliceStation/Edit', [
+            'station'  => $this->buildItem(PoliceStation::findOrFail($id), new PoliceStationTransformer())
         ]);
     }
 
     /**
      * @param int $id
-     * @param CitizenRequest $request
+     * @param PoliceStationRequest $request
      *
      * @return RedirectResponse
      */
-    public function update(int $id, CitizenRequest $request): RedirectResponse
+    public function update(int $id, PoliceStationRequest $request): RedirectResponse
     {
         try {
             DB::beginTransaction();
-            $citizen = Citizen::findOrFail($id);
+            $station = PoliceStation::findOrFail($id);
             $data = $this->sanitizePostToRequest($request->all(), $request);
-            $citizen->fill($this->toSnakeKeys($data))->save();
+            $station->fill($this->toSnakeKeys($data))->save();
             DB::commit();
 
-            return redirect('/citizens');
+            return redirect('/police-stations');
         } catch (Exception $e) {
             DB::rollBack();
             Log::error($e);
@@ -108,9 +108,9 @@ class CitizenController extends Controller
     public function delete(int $id): RedirectResponse
     {
         try {
-            $user = Citizen::findOrFail($id);
+            $user = PoliceStation::findOrFail($id);
             $user->delete();
-            return redirect('/citizens');
+            return redirect('/police-stations');
         } Catch(Exception $e) {
             Log::error($e);
             return back()->withErrors(['error' => 'Something went wrong while deleting record']);

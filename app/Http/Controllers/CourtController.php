@@ -2,18 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CitizenRequest;
-use App\Models\Citizen;
+use App\Http\Requests\CourtRequest;
+use App\Models\Court;
 use App\Traits\DataTransformer;
-use App\Transformers\CitizenTransformer;
+use App\Transformers\CourtTransformer;
 use Exception;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Inertia\Inertia;
 use Inertia\Response;
 
-class CitizenController extends Controller
+class CourtController extends Controller
 {
     use DataTransformer;
 
@@ -22,7 +23,7 @@ class CitizenController extends Controller
      */
     public function index() : Response
     {
-        return Inertia::render('Citizen/Index', $this->buildCollection(Citizen::all(), new CitizenTransformer()));
+        return Inertia::render('Court/Index', $this->buildCollection(Court::all(), new CourtTransformer()));
     }
 
     /**
@@ -32,7 +33,7 @@ class CitizenController extends Controller
      */
     public function show(int $id): Response
     {
-        return Inertia::render('Citizen/Show', $this->buildItem(Citizen::findOrFail($id), new CitizenTransformer()));
+        return Inertia::render('Court/Show', $this->buildItem(Court::findOrFail($id), new CourtTransformer()));
     }
 
     /**
@@ -40,24 +41,24 @@ class CitizenController extends Controller
      */
     public function create(): Response
     {
-        return Inertia::render('Citizen/Create');
+        return Inertia::render('Court/Create');
     }
 
     /**
-     * @param Citizen $citizen
-     * @param CitizenRequest $request
+     * @param Court $court
+     * @param CourtRequest $request
      *
      * @return RedirectResponse
      */
-    public function store(Citizen $citizen, CitizenRequest $request): RedirectResponse
+    public function store(Court $court, CourtRequest $request): RedirectResponse
     {
         try {
             DB::beginTransaction();
             $data = $this->sanitizePostToRequest($request->all(), $request);
-            $citizen->fill($this->toSnakeKeys($data))->save();
+            $court->fill($this->toSnakeKeys($data))->save();
             DB::commit();
 
-            return redirect('/citizens');
+            return redirect('/courts');
         } catch (Exception $e) {
             DB::rollBack();
             Log::error($e);
@@ -72,27 +73,27 @@ class CitizenController extends Controller
      */
     public function edit(int $id): Response
     {
-        return Inertia::render('Citizen/Edit', [
-            'citizen'  => $this->buildItem(Citizen::findOrFail($id), new CitizenTransformer())
+        return Inertia::render('Court/Edit', [
+            'court'  => $this->buildItem(Court::findOrFail($id), new CourtTransformer())
         ]);
     }
 
     /**
      * @param int $id
-     * @param CitizenRequest $request
+     * @param CourtRequest $request
      *
      * @return RedirectResponse
      */
-    public function update(int $id, CitizenRequest $request): RedirectResponse
+    public function update(int $id, CourtRequest $request): RedirectResponse
     {
         try {
             DB::beginTransaction();
-            $citizen = Citizen::findOrFail($id);
+            $court = Court::findOrFail($id);
             $data = $this->sanitizePostToRequest($request->all(), $request);
-            $citizen->fill($this->toSnakeKeys($data))->save();
+            $court->fill($this->toSnakeKeys($data))->save();
             DB::commit();
 
-            return redirect('/citizens');
+            return redirect('/courts');
         } catch (Exception $e) {
             DB::rollBack();
             Log::error($e);
@@ -108,9 +109,9 @@ class CitizenController extends Controller
     public function delete(int $id): RedirectResponse
     {
         try {
-            $user = Citizen::findOrFail($id);
+            $user = Court::findOrFail($id);
             $user->delete();
-            return redirect('/citizens');
+            return redirect('/courts');
         } Catch(Exception $e) {
             Log::error($e);
             return back()->withErrors(['error' => 'Something went wrong while deleting record']);

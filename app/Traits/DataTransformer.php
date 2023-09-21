@@ -6,6 +6,7 @@ use Closure;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Str;
 use League\Fractal\Manager;
 use League\Fractal\Pagination\IlluminatePaginatorAdapter;
 use League\Fractal\Resource\Collection;
@@ -103,5 +104,17 @@ trait DataTransformer
         }
 
         return $data;
+    }
+
+    /**
+     * @param array $data
+     *
+     * @return array
+    */
+    public function toSnakeKeys(array $data): array
+    {
+        return collect($data)->mapWithKeys(function ($value, $key){
+            return [Str::snake($key) => $value];
+        })->toArray();
     }
 }

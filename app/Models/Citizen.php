@@ -15,4 +15,10 @@ use Illuminate\Database\Eloquent\Model;
 class Citizen extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'name',
+        'nin_number',
+        'phone_number',
+    ];
 }
