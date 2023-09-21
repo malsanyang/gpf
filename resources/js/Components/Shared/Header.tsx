@@ -4,13 +4,15 @@ import DarkModeSwitcher from "./DarkModeSwitcher";
 import DropdownNotification from "./DropdownNotification";
 import DropdownMessage from "./DropdownMessage";
 import DropdownUser from "./DropdownUser";
+import UserListProps from "../../Models/props_UserItem";
 
 interface HeaderProps {
     sidebarOpen: string | boolean | undefined;
     setSidebarOpen: (arg0: boolean) => void;
+    currentUser: UserListProps | undefined;
 }
 
-const Header = ({sidebarOpen, setSidebarOpen}: HeaderProps) => {
+const Header = ({sidebarOpen, setSidebarOpen, currentUser}: HeaderProps) => {
     return (
         <header className="sticky top-0 z-999 flex w-full bg-white drop-shadow-1 dark:bg-boxdark dark:drop-shadow-none">
             <div className="flex flex-grow items-center justify-between py-4 px-4 shadow-2 md:px-6 2xl:px-11">
@@ -116,7 +118,7 @@ const Header = ({sidebarOpen, setSidebarOpen}: HeaderProps) => {
                 </ul>
 
                 {/* <!-- User Area --> */}
-                <DropdownUser />
+                <DropdownUser currentUser={currentUser}/>
                 {/* <!-- User Area --> */}
                 </div>
             </div>

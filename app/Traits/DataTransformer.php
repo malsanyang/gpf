@@ -88,7 +88,7 @@ trait DataTransformer
      *
      * @return array
      */
-    public function sanitizePostToRequest(array $data, Request $request, array $whitelist = ['reference']): array
+    public function sanitizePostToRequest(array $data, Request $request, array $whitelist = ['id']): array
     {
         $expectedData = array_keys($request->rules());
         foreach ($data as $key => $val)

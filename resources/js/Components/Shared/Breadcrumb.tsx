@@ -5,8 +5,8 @@ interface BreadcrumbProps {
     paths: Array<string>;
 }
 const Breadcrumb = ({ paths }: BreadcrumbProps) => {
-    const pathToDisplay = (path: string|null): string =>  {
-        if (path === null) {
+    const pathToDisplay = (path: string|null|undefined): string =>  {
+        if (path === undefined || path === null) {
             return '';
         }
 

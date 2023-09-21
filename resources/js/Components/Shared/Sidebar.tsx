@@ -1,6 +1,4 @@
 import React, { useEffect, useRef, useState } from 'react';
-//import { NavLink, useLocation } from 'react-router-dom';
-//import Logo from '../images/logo/logo.svg';
 import SidebarLinkGroup from './SidebarLinkGroup';
 import { Link } from '@inertiajs/react';
 
@@ -66,6 +64,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
             <div className="flex items-center justify-between gap-2 px-6 py-5.5 lg:py-6.5">
                 <Link href="/">
                     <img className="mx-auto h-10 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="Your Company" />
+                    <span className="mx-2">Docker Laravel</span>
                 </Link>
 
                 <button

@@ -14,7 +14,8 @@ use Spatie\Permission\Traits\HasRoles;
 /**
  * @property mixed $id
  * @property mixed $name
- * @property mixed email
+ * @property mixed $email
+ * @property mixed $password
  * @property bool $active
 */
 class User extends Authenticatable

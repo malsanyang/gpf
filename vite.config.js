@@ -22,4 +22,9 @@ export default defineConfig({
             host: 'localhost',
         },
     },
+    resolve: {
+        alias: {
+            ziggy: 'vendor/tightenco/ziggy/src/js/index.js'
+        }
+    }
 });

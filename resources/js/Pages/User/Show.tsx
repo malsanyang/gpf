@@ -4,12 +4,17 @@ import Breadcrumb from "../../Components/Shared/Breadcrumb";
 import UserListProps from "../../Models/props_UserItem";
 import {Head} from "@inertiajs/react";
 
-const Show = ({ data } : UserListProps) => {
+interface UserShowPageProps {
+    data: UserListProps,
+    currentUser: { data: UserListProps } | null,
+}
+
+const Show = ({ data, currentUser } : UserShowPageProps) => {
     let activeDom = data.active ?
         <p className="inline-flex rounded-full bg-success bg-opacity-10 py-1 px-3 text-sm font-medium text-success">Active</p>
         : <p className="inline-flex rounded-full bg-success bg-opacity-10 py-1 px-3 text-sm font-medium text-danger">In Active</p>;
     return (
-        <Layout>
+        <Layout currentUser={currentUser?.data}>
             <Head title={'User Details'} />
 
             <Breadcrumb paths={['user-management', 'user-details']} />

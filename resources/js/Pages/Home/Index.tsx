@@ -1,12 +1,15 @@
 import React from "react";
 import Layout from "../../Components/Layout/Layout";
 import {Head} from "@inertiajs/react";
+import UserListProps from "../../Models/props_UserItem";
 
-console.debug()
+interface HomeIndexPageProps {
+    currentUser: { data: UserListProps } | null,
+}
 
-const Index = () =>{
+const Index = ({ currentUser } : HomeIndexPageProps) =>{
     return (
-        <Layout>
+        <Layout currentUser={currentUser?.data}>
             <Head title={'Dashboard'} />
 
             <div className="container">

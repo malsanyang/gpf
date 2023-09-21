@@ -2,8 +2,14 @@ import React from "react";
 import { useState } from "react";
 import Sidebar from "../Shared/Sidebar";
 import Header from "../Shared/Header";
+import UserListProps from "../../Models/props_UserItem";
 
-const Layout = ({ children }: { children: React.ReactNode }) => {
+interface LayoutPropsrops {
+    children: React.ReactNode,
+    currentUser: UserListProps | undefined,
+}
+
+const Layout = ({ children, currentUser }: LayoutPropsrops) => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
 
     return (
@@ -18,7 +24,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                 {/* <!-- ===== Content Area Start ===== --> */}
                 <div className="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
                     {/* <!-- ===== Header Start ===== --> */}
-                    <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+                    <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} currentUser={currentUser}/>
                     {/* <!-- ===== Header End ===== --> */}
 
                     {/* <!-- ===== Main Content Start ===== --> */}
