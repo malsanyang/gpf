@@ -9,7 +9,7 @@ use App\Traits\DataTransformer;
 use App\Transformers\PoliceStationTransformer;
 use App\Transformers\RoleTransformer;
 use App\Transformers\UserTransformer;
-use DB;
+use Illuminate\Support\Facades\DB;
 use Exception;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Hash;

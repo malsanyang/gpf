@@ -14,7 +14,7 @@ interface UserEditPageProps {
 }
 
 const Edit = ({ user, roles, stations, currentUser } : UserEditPageProps) => {
-    const { data, setData, put, processing, errors} = useForm({
+    const { data, setData, put, processing, errors} = useForm<any>({
         id: '',
         firstName: '',
         lastName: '',
@@ -59,7 +59,7 @@ const Edit = ({ user, roles, stations, currentUser } : UserEditPageProps) => {
                                 <label htmlFor="firstName" className="mb-2.5 block text-black dark:text-white">First Name</label>
                                 <div className="mt-2">
                                     <input className="w-full rounded border-[1.5px] border-stroke bg-white py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
-                                           id="firstName" value={data.firstName} autoComplete="firstName" required onChange={ e => setData('firstName', e.target.value)}
+                                           id="firstName" value={data.firstName} autoComplete="firstName" required onChange={ e => setData(data => ({ ...data, firstName: e.target.value})) }
                                     />
                                 </div>
                                 { errors && errors.firstName !== undefined && (
@@ -73,7 +73,7 @@ const Edit = ({ user, roles, stations, currentUser } : UserEditPageProps) => {
                                 <label htmlFor="lastName" className="mb-2.5 block text-black dark:text-white">Last Name</label>
                                 <div className="mt-2">
                                     <input className="w-full rounded border-[1.5px] border-stroke bg-white py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
-                                           id="lastName" value={data.lastName} autoComplete="lastName" required onChange={ e => setData('lastName', e.target.value)}
+                                           id="lastName" value={data.lastName} autoComplete="lastName" required onChange={ e => setData(data => ({ ...data, lastName: e.target.value})) }
                                     />
                                 </div>
                                 { errors && errors.lastName !== undefined && (
@@ -87,7 +87,7 @@ const Edit = ({ user, roles, stations, currentUser } : UserEditPageProps) => {
                                 <label htmlFor="address" className="mb-2.5 block text-black dark:text-white">Address</label>
                                 <div className="mt-2">
                                     <input className="w-full rounded border-[1.5px] border-stroke bg-white py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
-                                           id="address" value={data.address} autoComplete="address" required onChange={ e => setData('address', e.target.value)}
+                                           id="address" value={data.address} autoComplete="address" required onChange={ e => setData(data => ({ ...data, address: e.target.value})) }
                                     />
                                 </div>
                                 { errors && errors.address !== undefined && (
@@ -101,7 +101,7 @@ const Edit = ({ user, roles, stations, currentUser } : UserEditPageProps) => {
                                 <label htmlFor="telephoneNo" className="mb-2.5 block text-black dark:text-white">Telephone Number</label>
                                 <div className="mt-2">
                                     <input className="w-full rounded border-[1.5px] border-stroke bg-white py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
-                                           id="telephoneNo" value={data.telephoneNo} autoComplete="telephoneNo" required onChange={ e => setData('telephoneNo', e.target.value)}
+                                           id="telephoneNo" value={data.telephoneNo} autoComplete="telephoneNo" required onChange={ e => setData(data => ({ ...data, telephoneNo: e.target.value})) }
                                     />
                                 </div>
                                 { errors && errors.telephoneNo !== undefined && (
@@ -115,7 +115,7 @@ const Edit = ({ user, roles, stations, currentUser } : UserEditPageProps) => {
                                 <label htmlFor="email" className="mb-2.5 block text-black dark:text-white">Email address</label>
                                 <div className="mt-2">
                                     <input className="w-full rounded border-[1.5px] border-stroke bg-white py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
-                                           id="email" type={'email'} value={data.email} autoComplete="email" required onChange={ e => setData('email', e.target.value)}
+                                           id="email" type={'email'} value={data.email} autoComplete="email" required onChange={ e => setData(data => ({ ...data, email: e.target.value})) }
                                     />
                                 </div>
                                 { errors && errors.email !== undefined && (
@@ -129,7 +129,7 @@ const Edit = ({ user, roles, stations, currentUser } : UserEditPageProps) => {
                                 <label htmlFor="password" className="mb-2.5 block text-black dark:text-white">Password</label>
                                 <div className="mt-2">
                                     <input className="w-full rounded border-[1.5px] border-stroke bg-white py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
-                                           id="password" type="password" value={data.password} autoComplete="password" required onChange={ e => setData('password', e.target.value)}
+                                           id="password" type="password" value={data.password} autoComplete="password" required onChange={ e => setData(data => ({ ...data, password: e.target.value}))}
                                     />
                                 </div>
                                 { errors && errors.password !== undefined && (
@@ -143,7 +143,7 @@ const Edit = ({ user, roles, stations, currentUser } : UserEditPageProps) => {
                                 <label htmlFor="role" className="mb-2.5 block text-black dark:text-white">Role</label>
                                 <div className="mt-2">
                                     <select className="w-full rounded border-[1.5px] border-stroke bg-white py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
-                                            id="role" value={data.role} autoComplete="role" required onChange={ e => setData('role', e.target.value)}
+                                            id="role" value={data.role} autoComplete="role" required onChange={ e => setData(data => ({ ...data, role: e.target.value})) }
                                     >
                                         <option value={''}>Please select a role</option>
                                         { roles.data.map((role, index) => {
@@ -163,7 +163,7 @@ const Edit = ({ user, roles, stations, currentUser } : UserEditPageProps) => {
                                     <label htmlFor="stationId" className="mb-2.5 block text-black dark:text-white">Police Station</label>
                                     <div className="mt-2">
                                         <select className="w-full rounded border-[1.5px] border-stroke bg-white py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
-                                                id="stationId" value={data.stationId} autoComplete="stationId" required onChange={ e => setData('stationId', e.target.value)}
+                                                id="stationId" value={data.stationId} autoComplete="stationId" required onChange={ e => setData(data => ({ ...data, stationId: e.target.value}))}
                                         >
                                             <option value={''}>Please select a station</option>
                                             { stations.data.map((station, index) => {

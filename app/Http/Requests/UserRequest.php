@@ -22,7 +22,7 @@ class UserRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
+        $rules = [
             'firstName'     => 'required|string',
             'lastName'      => 'required|string',
             'address'       => 'required|string',
@@ -30,7 +30,13 @@ class UserRequest extends FormRequest
             'email'         => 'required|email',
             'password'      => 'required|min:6',
             'role'          => 'required|string',
-            'stationId'     => ($this->request->get('role') === LocalRole::ROLE_POLICE_OFFICER || $this->request->get('role') === LocalRole::ROLE_INVESTIGATOR)? 'required|int' : 'sometimes|int',
         ];
+
+        if ($this->request->get('role') === LocalRole::ROLE_POLICE_OFFICER || $this->request->get('role') === LocalRole::ROLE_INVESTIGATOR)
+        {
+            $rules['stationId'] = 'required|int';
+        }
+
+        return $rules;
     }
 }
