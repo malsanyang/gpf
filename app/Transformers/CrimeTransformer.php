@@ -2,10 +2,9 @@
 
 namespace App\Transformers;
 
-use App\Models\PoliceStation;
 use League\Fractal\TransformerAbstract;
 
-class PoliceStationTransformer extends TransformerAbstract
+class CrimeTransformer extends TransformerAbstract
 {
     /**
      * List of resources to automatically include
@@ -15,7 +14,7 @@ class PoliceStationTransformer extends TransformerAbstract
     protected array $defaultIncludes = [
         //
     ];
-
+    
     /**
      * List of resources possible to include
      *
@@ -24,19 +23,16 @@ class PoliceStationTransformer extends TransformerAbstract
     protected array $availableIncludes = [
         //
     ];
-
+    
     /**
      * A Fractal transformer.
-     * @param PoliceStation $station
+     *
      * @return array
      */
-    public function transform(PoliceStation $station): array
+    public function transform()
     {
         return [
-            'id'            => $station->id,
-            'name'          => $station->name,
-            'location'      => $station->location,
-            'telephoneNo'   => $station->telephone_no,
+            //
         ];
     }
 }

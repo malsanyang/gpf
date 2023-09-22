@@ -25,10 +25,34 @@ const Show = ({ data, currentUser } : UserShowPageProps) => {
                         <tbody>
                             <tr>
                                 <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                                    <p className="text-black dark:text-white">Name</p>
+                                    <p className="text-black dark:text-white">First Name</p>
                                 </td>
                                 <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                                    <p className="text-black dark:text-white">{data.name}</p>
+                                    <p className="text-black dark:text-white">{data.firstName}</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
+                                    <p className="text-black dark:text-white">Last Name</p>
+                                </td>
+                                <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
+                                    <p className="text-black dark:text-white">{data.lastName}</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
+                                    <p className="text-black dark:text-white">Address</p>
+                                </td>
+                                <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
+                                    <p className="text-black dark:text-white">{data.address}</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
+                                    <p className="text-black dark:text-white">Telephone No</p>
+                                </td>
+                                <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
+                                    <p className="text-black dark:text-white">{data.telephoneNo}</p>
                                 </td>
                             </tr>
                             <tr>
@@ -37,6 +61,14 @@ const Show = ({ data, currentUser } : UserShowPageProps) => {
                                 </td>
                                 <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                                     <p className="text-black dark:text-white">{data.email}</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
+                                    <p className="text-black dark:text-white">Station</p>
+                                </td>
+                                <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
+                                    <p className="text-black dark:text-white">{data.station}</p>
                                 </td>
                             </tr>
                             <tr>

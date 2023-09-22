@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CitizenController;
 use App\Http\Controllers\CourtController;
+use App\Http\Controllers\CrimeController;
 use App\Http\Controllers\CriminalController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PoliceStationController;
@@ -80,4 +81,12 @@ Route::prefix('police-stations')->group(callback: function () {
     Route::post('/', [PoliceStationController::class, 'store'])->name('police-stations.store')->middleware('can:' . LocalPermission::CAN_CREATE_RECORD);
     Route::put('/{id}', [PoliceStationController::class, 'update'])->name('police-stations.update')->middleware('can:' . LocalPermission::CAN_UPDATE_RECORD);
     Route::delete('/{id}', [PoliceStationController::class, 'delete'])->name('police-stations.delete')->middleware('can:' . LocalPermission::CAN_DELETE_RECORD);
+})->middleware('auth');
+
+Route::prefix('crimes')->group(callback: function () {
+    Route::get('/', [CrimeController::class, 'index'])->name('crimes.index')->middleware('can:' . LocalPermission::CAN_VIEW_RECORD);
+    Route::get('/create', [CrimeController::class, 'create'])->name('crimes.create')->middleware('can:' . LocalPermission::CAN_CREATE_RECORD);
+    Route::get('/{id}', [CrimeController::class, 'show'])->name('crimes.show')->middleware('can:' . LocalPermission::CAN_VIEW_RECORD);
+    Route::post('/', [CrimeController::class, 'store'])->name('crimes.store')->middleware('can:' . LocalPermission::CAN_CREATE_RECORD);
+    Route::delete('/{id}', [CrimeController::class, 'delete'])->name('crimes.delete')->middleware('can:' . LocalPermission::CAN_DELETE_RECORD);
 })->middleware('auth');

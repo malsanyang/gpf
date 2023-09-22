@@ -14,24 +14,30 @@ class CitizenSeeder extends Seeder
     public function run(): void
     {
         Citizen::firstOrCreate([
-            'nin_number' => '2019-010010101',
+            'telephone_no' => '+220 5885858',
         ],[
-            'name' => 'Yam Beans',
-            'phone_number' => '28383993'
+            'first_name' => 'Yam',
+            'last_name' => 'Beans',
+            'address' => 'Banjul',
+            'email' => 'yam.beans@gmail.com'
         ]);
 
         Citizen::firstOrCreate([
-            'nin_number' => '2019-010010102',
+            'telephone_no' => '+220 5995858',
         ],[
-            'name' => 'Carrot Beans',
-            'phone_number' => '28383993'
+            'first_name' => 'Carrot',
+            'last_name' => 'Beans',
+            'address' => 'Brikama',
+            'email' => 'carrot.beans@gmail.com'
         ]);
 
         Citizen::firstOrCreate([
-            'nin_number' => '2019-010010103',
+            'telephone_no' => '+220 5775858',
         ],[
-            'name' => 'Cassava Beans',
-            'phone_number' => '28383993'
+            'first_name' => 'Cassava',
+            'last_name' => 'Beans',
+            'address' => 'Serekunda',
+            'email' => 'cassava.beans@gmail.com'
         ]);
     }
 }

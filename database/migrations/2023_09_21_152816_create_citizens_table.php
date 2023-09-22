@@ -13,9 +13,11 @@ return new class extends Migration
     {
         Schema::create('citizens', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('nin_number');
-            $table->string('phone_number');
+            $table->string('first_name');
+            $table->string('last_name');
+            $table->string('address');
+            $table->string('telephone_no');
+            $table->string('email')->nullable();
             $table->timestamps();
         });
     }

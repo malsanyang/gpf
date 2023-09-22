@@ -47,7 +47,7 @@ const DropdownUser = ({ currentUser } : { currentUser : UserListProps | undefine
             >
                 <span className="hidden text-right lg:block">
                     <span className="block text-sm font-medium text-black dark:text-white">
-                        {currentUser?.name}
+                        {currentUser?.fullName}
                     </span>
                     <span className="block text-xs">{currentUser?.roleNames}</span>
                 </span>
@@ -111,7 +111,7 @@ const DropdownUser = ({ currentUser } : { currentUser : UserListProps | undefine
                         </Link>
                     </li>
                 </ul>
-                <Link 
+                <Link
                     className="flex items-center gap-3.5 py-4 px-6 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base"
                     method='post'
                     as='button'

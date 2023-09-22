@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Citizen;
 use App\Models\Criminal;
+use Carbon\Carbon;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -15,24 +16,30 @@ class CriminalSeeder extends Seeder
     public function run(): void
     {
         Criminal::firstOrCreate([
-            'nin_number' => '2020-010010101',
+            'telephone_no' => '+220 6885858',
         ],[
-            'name' => 'Yam Farm',
-            'phone_number' => '28383993'
+            'first_name' => 'Yam',
+            'last_name' => 'Farm',
+            'address' => 'Banjul',
+            'dob' => Carbon::createFromDate(2000, 1, 1),
         ]);
 
         Criminal::firstOrCreate([
-            'nin_number' => '2020-010010102',
+            'telephone_no' => '+220 6995858',
         ],[
-            'name' => 'Carrot Farm',
-            'phone_number' => '28383993'
+            'first_name' => 'Carrot',
+            'last_name' => 'Farm',
+            'address' => 'Banjul',
+            'dob' => Carbon::createFromDate(2001, 1, 1),
         ]);
 
         Criminal::firstOrCreate([
-            'nin_number' => '2020-010010103',
+            'telephone_no' => '+220 6775858',
         ],[
-            'name' => 'Cassava Farm',
-            'phone_number' => '28383993'
+            'first_name' => 'Cassava',
+            'last_name' => 'Farm',
+            'address' => 'Banjul',
+            'dob' => Carbon::createFromDate(2001, 5, 1),
         ]);
     }
 }

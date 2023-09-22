@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('prisons', function (Blueprint $table) {
             $table->id();
+            $table->string('prison_no');
             $table->string('name');
             $table->string('location');
             $table->timestamps();

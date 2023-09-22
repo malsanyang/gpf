@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UserRequest;
+use App\Models\PoliceStation;
 use App\Models\User;
 use App\Traits\DataTransformer;
+use App\Transformers\PoliceStationTransformer;
 use App\Transformers\RoleTransformer;
 use App\Transformers\UserTransformer;
 use DB;
@@ -44,15 +46,16 @@ class UserController extends Controller
     */
     public function create(): Response
     {
-        $roles = Role::all();
-
-        return Inertia::render('User/Create', ['roles' => $this->buildCollection($roles, new RoleTransformer())]);
+        return Inertia::render('User/Create', [
+            'roles' => $this->buildCollection(Role::all(), new RoleTransformer()),
+            'stations' => $this->buildCollection(PoliceStation::all(), new PoliceStationTransformer()),
+        ]);
     }
 
     /**
      * @param User $user
      * @param UserRequest $request
-     * 
+     *
      * @return RedirectResponse
     */
     public function store(User $user, UserRequest $request): RedirectResponse
@@ -62,7 +65,7 @@ class UserController extends Controller
             $role = $data['role'];
             $data['password'] = Hash::make($data['password']);
             data_forget($data, 'role');
-            $user->fill($data)->save();
+            $user->fill($this->toSnakeKeys($data))->save();
             $user->refresh();
             $user->assignRole($role);
 
@@ -82,14 +85,15 @@ class UserController extends Controller
     {
         return Inertia::render('User/Edit', [
             'user'  => $this->buildItem(User::findOrFail($id), new UserTransformer()),
-            'roles' => $this->buildCollection(Role::all(), new RoleTransformer())
+            'roles' => $this->buildCollection(Role::all(), new RoleTransformer()),
+            'stations' => $this->buildCollection(PoliceStation::all(), new PoliceStationTransformer()),
         ]);
     }
 
     /**
      * @param User $user
      * @param UserRequest $request
-     * 
+     *
      * @return RedirectResponse
      */
     public function update(int $id, UserRequest $request): RedirectResponse
@@ -101,9 +105,9 @@ class UserController extends Controller
             $role = $data['role'];
             $data['password'] = Hash::make($data['password']);
             data_forget($data, 'role');
-            $user->fill($data)->save();
+            $user->fill($this->toSnakeKeys($data))->save();
             $user->refresh();
-            
+
             $user->syncRoles([$role]);
             DB::commit();
             return redirect('/user-management');

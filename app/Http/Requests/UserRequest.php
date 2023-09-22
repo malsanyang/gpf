@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Library\Auth\LocalRole;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UserRequest extends FormRequest
@@ -22,10 +23,14 @@ class UserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name'      => 'required|string',
-            'email'     => 'required|email',
-            'password'  => 'required|min:6',
-            'role'      => 'required|string',
+            'firstName'     => 'required|string',
+            'lastName'      => 'required|string',
+            'address'       => 'required|string',
+            'telephoneNo'   => 'required|string',
+            'email'         => 'required|email',
+            'password'      => 'required|min:6',
+            'role'          => 'required|string',
+            'stationId'     => ($this->request->get('role') === LocalRole::ROLE_POLICE_OFFICER || $this->request->get('role') === LocalRole::ROLE_INVESTIGATOR)? 'required|int' : 'sometimes|int',
         ];
     }
 }

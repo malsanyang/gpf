@@ -14,9 +14,12 @@ return new class extends Migration
         Schema::create('crimes', function (Blueprint $table) {
             $table->id();
             $table->string('case_number');
+            $table->string('crime_type');
+            $table->string('location');
             $table->longText('description');
             $table->string('status')->nullable()->default('Pending');
             $table->integer('reported_by');
+            $table->string('witnessed_by');
             $table->integer('criminal_id');
             $table->integer('police_officer_id');
             $table->longText('investigation_report')->nullable();
