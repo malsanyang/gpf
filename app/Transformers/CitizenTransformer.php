@@ -35,9 +35,12 @@ class CitizenTransformer extends TransformerAbstract
     {
         return [
             'id'            => $citizen->id,
-            'name'          => $citizen->name,
-            'ninNumber'     => $citizen->nin_number,
-            'phoneNumber'   => $citizen->phone_number,
+            'firstName'     => $citizen->first_name,
+            'lastName'      => $citizen->last_name,
+            'fullName'      => $citizen->full_name,
+            'address'       => $citizen->address,
+            'telephoneNo'   => $citizen->telephone_no,
+            'email'         => $citizen->email,
         ];
     }
 }

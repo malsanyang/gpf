@@ -34,10 +34,13 @@ const Index = ({ data, currentUser } : CitizenIndexPageProps) => {
                                 Name
                             </th>
                             <th className="min-w-[150px] py-4 px-4 font-medium text-black dark:text-white">
-                                Nin Number
+                                Address
                             </th>
                             <th className="min-w-[120px] py-4 px-4 font-medium text-black dark:text-white">
-                                Phone Number
+                                Telephone No.
+                            </th>
+                            <th className="min-w-[120px] py-4 px-4 font-medium text-black dark:text-white">
+                                Email
                             </th>
                             <th className="py-4 px-4 font-medium text-black dark:text-white">
                                 Actions
@@ -50,13 +53,16 @@ const Index = ({ data, currentUser } : CitizenIndexPageProps) => {
                             return (
                                 <tr key={index}>
                                     <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                                        <p className="text-black dark:text-white">{citizen.name}</p>
+                                        <p className="text-black dark:text-white">{citizen.fullName}</p>
                                     </td>
                                     <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                                        <p className="text-black dark:text-white">{citizen.ninNumber}</p>
+                                        <p className="text-black dark:text-white">{citizen.address}</p>
                                     </td>
                                     <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                                        <p className="text-black dark:text-white">{citizen.phoneNumber}</p>
+                                        <p className="text-black dark:text-white">{citizen.telephoneNo}</p>
+                                    </td>
+                                    <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
+                                        <p className="text-black dark:text-white">{citizen.email}</p>
                                     </td>
                                     <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                                         <div className="flex items-center space-x-3.5">
