@@ -11,7 +11,7 @@ interface CourtEditPageProps {
 }
 
 const Edit = ({ court, currentUser } : CourtEditPageProps) => {
-    const { data, setData, put, processing, errors} = useForm({id: '', name: '', location: ''});
+    const { data, setData, put, processing, errors} = useForm({id: 0, name: '', location: ''});
 
     useEffect(() => {
         setData({id: court.data.id, name: court.data.name, location: court.data.location});

@@ -11,8 +11,8 @@ interface CitizenEditPageProps {
 }
 
 const Edit = ({ citizen, currentUser } : CitizenEditPageProps) => {
-    const { data, setData, put, processing, errors} = useForm<any>({
-        id: '',
+    const { data, setData, put, processing, errors} = useForm({
+        id: 0,
         firstName: '',
         lastName: '',
         address: '',

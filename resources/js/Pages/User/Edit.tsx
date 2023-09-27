@@ -14,8 +14,8 @@ interface UserEditPageProps {
 }
 
 const Edit = ({ user, roles, stations, currentUser } : UserEditPageProps) => {
-    const { data, setData, put, processing, errors} = useForm<any>({
-        id: '',
+    const { data, setData, put, processing, errors} = useForm({
+        id: 0,
         firstName: '',
         lastName: '',
         address: '',
@@ -23,7 +23,7 @@ const Edit = ({ user, roles, stations, currentUser } : UserEditPageProps) => {
         email: '',
         password: '',
         role: '',
-        stationId: '',
+        stationId: 0,
     });
 
     useEffect(() => {
@@ -163,7 +163,7 @@ const Edit = ({ user, roles, stations, currentUser } : UserEditPageProps) => {
                                     <label htmlFor="stationId" className="mb-2.5 block text-black dark:text-white">Police Station</label>
                                     <div className="mt-2">
                                         <select className="w-full rounded border-[1.5px] border-stroke bg-white py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
-                                                id="stationId" value={data.stationId} autoComplete="stationId" required onChange={ e => setData(data => ({ ...data, stationId: e.target.value}))}
+                                                id="stationId" value={data.stationId} autoComplete="stationId" required onChange={ e => setData(data => ({ ...data, stationId: parseInt(e.target.value)}))}
                                         >
                                             <option value={''}>Please select a station</option>
                                             { stations.data.map((station, index) => {

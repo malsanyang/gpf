@@ -3,6 +3,7 @@ import Layout from "../../Components/Layout/Layout";
 import Breadcrumb from "../../Components/Shared/Breadcrumb";
 import UserListProps from "../../Models/props_UserItem";
 import {Head, Link} from "@inertiajs/react";
+// @ts-ignore
 import route from 'ziggy';
 import CourtListProps from "../../Models/props_CourtItem";
 
