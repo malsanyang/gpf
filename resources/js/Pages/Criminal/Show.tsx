@@ -23,26 +23,42 @@ const Show = ({ data, currentUser } : CriminalShowPageProps) => {
                         <tbody>
                         <tr>
                             <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                                <p className="text-black dark:text-white">Name</p>
+                                <p className="text-black dark:text-white">First Name</p>
                             </td>
                             <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                                <p className="text-black dark:text-white">{data.name}</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                                <p className="text-black dark:text-white">NiN Number</p>
-                            </td>
-                            <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                                <p className="text-black dark:text-white">{data.ninNumber}</p>
+                                <p className="text-black dark:text-white">{data.firstName}</p>
                             </td>
                         </tr>
                         <tr>
                             <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                                <p className="text-black dark:text-white">Phone Number</p>
+                                <p className="text-black dark:text-white">Last Name</p>
                             </td>
                             <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                                <p className="text-black dark:text-white">{data.phoneNumber}</p>
+                                <p className="text-black dark:text-white">{data.lastName}</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
+                                <p className="text-black dark:text-white">Address</p>
+                            </td>
+                            <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
+                                <p className="text-black dark:text-white">{data.address}</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
+                                <p className="text-black dark:text-white">Telephone No.</p>
+                            </td>
+                            <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
+                                <p className="text-black dark:text-white">{data.telephoneNo}</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
+                                <p className="text-black dark:text-white">DOB</p>
+                            </td>
+                            <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
+                                <p className="text-black dark:text-white">{new Date(data.dob).toLocaleDateString()}</p>
                             </td>
                         </tr>
                         </tbody>

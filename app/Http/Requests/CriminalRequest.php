@@ -22,9 +22,11 @@ class CriminalRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string',
-            'ninNumber' => 'required|string',
-            'phoneNumber' => 'required|string',
+            'firstName'     => 'required|string',
+            'lastName'      => 'required|string',
+            'address'       => 'required|string',
+            'telephoneNo'   => 'required|string',
+            'dob'           => 'required|date',
         ];
     }
 }

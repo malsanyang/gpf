@@ -11,10 +11,24 @@ interface CriminalEditPageProps {
 }
 
 const Edit = ({ criminal, currentUser } : CriminalEditPageProps) => {
-    const { data, setData, put, processing, errors} = useForm({id: '', name: '', ninNumber: '', phoneNumber: ''});
+    const { data, setData, put, processing, errors} = useForm<any>({
+        id: '',
+        firstName: '',
+        lastName: '',
+        address: '',
+        telephoneNo: '',
+        dob: ''
+    });
 
     useEffect(() => {
-        setData({id: criminal.data.id, name: criminal.data.name, ninNumber: criminal.data.ninNumber, phoneNumber: criminal.data.phoneNumber});
+        setData({
+            id: criminal.data.id,
+            firstName: criminal.data.firstName,
+            lastName: criminal.data.lastName,
+            address: criminal.data.address,
+            telephoneNo: criminal.data.telephoneNo,
+            dob: criminal.data.dob
+        });
     }, [criminal])
 
     function handleSubmit(e: any) {
@@ -33,43 +47,71 @@ const Edit = ({ criminal, currentUser } : CriminalEditPageProps) => {
                     <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
                         <form className="space-y-6" onSubmit={handleSubmit}>
                             <div>
-                                <label htmlFor="name" className="mb-2.5 block text-black dark:text-white">Full Name</label>
+                                <label htmlFor="firstName" className="mb-2.5 block text-black dark:text-white">First Name</label>
                                 <div className="mt-2">
                                     <input className="w-full rounded border-[1.5px] border-stroke bg-white py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
-                                           id="name" value={data.name} autoComplete="name" required onChange={ e => setData('name', e.target.value)}
+                                           id="firstName" value={data.firstName} autoComplete="firstName" required onChange={ e => setData(data => ({...data, firstName: e.target.value}))}
                                     />
                                 </div>
-                                { errors && errors.name !== undefined && (
+                                { errors && errors.firstName !== undefined && (
                                     <div className="flex justify-between">
-                                        <p className="w-full text-sm text-danger">{errors.name}</p>
+                                        <p className="w-full text-sm text-danger">{errors.firstName}</p>
                                     </div>
                                 )}
                             </div>
 
                             <div>
-                                <label htmlFor="ninNumber" className="mb-2.5 block text-black dark:text-white">NiN Number</label>
+                                <label htmlFor="lastName" className="mb-2.5 block text-black dark:text-white">Last Name</label>
                                 <div className="mt-2">
                                     <input className="w-full rounded border-[1.5px] border-stroke bg-white py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
-                                           id="ninNumber" type={'text'} value={data.ninNumber} autoComplete="Nin Number" required onChange={ e => setData('ninNumber', e.target.value)}
+                                           id="lastName" value={data.lastName} autoComplete="lastName" required onChange={ e => setData(data => ({...data, lastName: e.target.value}))}
                                     />
                                 </div>
-                                { errors && errors.ninNumber !== undefined && (
+                                { errors && errors.lastName !== undefined && (
                                     <div className="flex justify-between">
-                                        <p className="w-full text-sm text-danger">{errors.ninNumber}</p>
+                                        <p className="w-full text-sm text-danger">{errors.lastName}</p>
                                     </div>
                                 )}
                             </div>
 
                             <div>
-                                <label htmlFor="phoneNumber" className="mb-2.5 block text-black dark:text-white">Phone Number</label>
+                                <label htmlFor="address" className="mb-2.5 block text-black dark:text-white">Address</label>
                                 <div className="mt-2">
                                     <input className="w-full rounded border-[1.5px] border-stroke bg-white py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
-                                           id="phoneNumber" type="text" value={data.phoneNumber} autoComplete="phoneNumber" required onChange={ e => setData('phoneNumber', e.target.value)}
+                                           id="address" value={data.address} autoComplete="address" required onChange={ e => setData(data => ({...data, address: e.target.value}))}
                                     />
                                 </div>
-                                { errors && errors.phoneNumber !== undefined && (
+                                { errors && errors.address !== undefined && (
                                     <div className="flex justify-between">
-                                        <p className="w-full text-sm text-danger">{errors.phoneNumber}</p>
+                                        <p className="w-full text-sm text-danger">{errors.address}</p>
+                                    </div>
+                                )}
+                            </div>
+
+                            <div>
+                                <label htmlFor="telephoneNo" className="mb-2.5 block text-black dark:text-white">Telephone No.</label>
+                                <div className="mt-2">
+                                    <input className="w-full rounded border-[1.5px] border-stroke bg-white py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                                           id="telephoneNo" value={data.telephoneNo} autoComplete="telephoneNo" required onChange={ e => setData(data => ({...data, telephoneNo: e.target.value}))}
+                                    />
+                                </div>
+                                { errors && errors.telephoneNo !== undefined && (
+                                    <div className="flex justify-between">
+                                        <p className="w-full text-sm text-danger">{errors.telephoneNo}</p>
+                                    </div>
+                                )}
+                            </div>
+
+                            <div>
+                                <label htmlFor="dob" className="mb-2.5 block text-black dark:text-white">DOB</label>
+                                <div className="mt-2">
+                                    <input className="w-full rounded border-[1.5px] border-stroke bg-white py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                                           id="dob" type={'date'} defaultValue={new Date(data.dob).toDateString()} autoComplete="dob" required onChange={ e => setData(data => ({...data, dob: e.target.value}))}
+                                    />
+                                </div>
+                                { errors && errors.dob !== undefined && (
+                                    <div className="flex justify-between">
+                                        <p className="w-full text-sm text-danger">{errors.dob}</p>
                                     </div>
                                 )}
                             </div>

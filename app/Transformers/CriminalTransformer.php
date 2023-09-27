@@ -35,9 +35,12 @@ class CriminalTransformer extends TransformerAbstract
     {
         return [
             'id'            => $criminal->id,
-            'name'          => $criminal->name,
-            'ninNumber'     => $criminal->nin_number,
-            'phoneNumber'   => $criminal->phone_number,
+            'firstName'     => $criminal->first_name,
+            'lastName'      => $criminal->last_name,
+            'fullName'      => $criminal->full_name,
+            'address'       => $criminal->address,
+            'telephoneNo'   => $criminal->telephone_no,
+            'dob'           => $criminal->dob,
         ];
     }
 }

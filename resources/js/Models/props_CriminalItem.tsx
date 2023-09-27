@@ -1,8 +1,11 @@
 interface CriminalListProps {
     id: number;
-    name: string;
-    ninNumber: string;
-    phoneNumber: string;
+    firstName: string;
+    lastName: string;
+    fullName: string;
+    address: string;
+    telephoneNo: string;
+    dob: string;
 }
 
 export default CriminalListProps;
