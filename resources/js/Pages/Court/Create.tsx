@@ -27,7 +27,7 @@ const Create = ({ currentUser } : CourtCreatePageProps) => {
                     <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
                         <form className="space-y-6" onSubmit={handleSubmit}>
                             <div>
-                                <label htmlFor="name" className="mb-2.5 block text-black dark:text-white">Full Name</label>
+                                <label htmlFor="name" className="mb-2.5 block text-black dark:text-white">Name</label>
                                 <div className="mt-2">
                                     <input className="w-full rounded border-[1.5px] border-stroke bg-white py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                                            id="name" value={data.name} autoComplete="name" required onChange={ e => setData('name', e.target.value)}

@@ -23,6 +23,14 @@ const Show = ({ data, currentUser } : CourtShowPageProps) => {
                         <tbody>
                         <tr>
                             <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
+                                <p className="text-black dark:text-white">Court No.</p>
+                            </td>
+                            <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
+                                <p className="text-black dark:text-white">{data.courtNo}</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                                 <p className="text-black dark:text-white">Name</p>
                             </td>
                             <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">

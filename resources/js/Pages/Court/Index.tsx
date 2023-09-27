@@ -31,6 +31,9 @@ const Index = ({ data, currentUser } : CourtIndexPageProps) => {
                         <thead>
                         <tr className="bg-gray-2 text-left dark:bg-meta-4">
                             <th className="min-w-[220px] py-4 px-4 font-medium text-black dark:text-white xl:pl-11">
+                                Court No.
+                            </th>
+                            <th className="min-w-[150px] py-4 px-4 font-medium text-black dark:text-white">
                                 Name
                             </th>
                             <th className="min-w-[150px] py-4 px-4 font-medium text-black dark:text-white">
@@ -46,6 +49,9 @@ const Index = ({ data, currentUser } : CourtIndexPageProps) => {
                         { data.map(function (court, index){
                             return (
                                 <tr key={index}>
+                                    <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
+                                        <p className="text-black dark:text-white">{court.courtNo}</p>
+                                    </td>
                                     <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                                         <p className="text-black dark:text-white">{court.name}</p>
                                     </td>

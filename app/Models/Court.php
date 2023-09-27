@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @property mixed $id
+ * @property mixed $court_no
  * @property mixed $name
  * @property mixed $location
  */

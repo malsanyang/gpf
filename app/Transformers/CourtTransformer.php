@@ -35,6 +35,7 @@ class CourtTransformer extends TransformerAbstract
     {
         return [
             'id'        => $court->id,
+            'courtNo'   => $court->court_no,
             'name'      => $court->name,
             'location'  => $court->location,
         ];

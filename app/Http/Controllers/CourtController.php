@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CourtRequest;
+use App\Library\Helper;
 use App\Models\Court;
 use App\Traits\DataTransformer;
 use App\Transformers\CourtTransformer;
@@ -55,6 +56,7 @@ class CourtController extends Controller
         try {
             DB::beginTransaction();
             $data = $this->sanitizePostToRequest($request->all(), $request);
+            $court->court_no = Helper::generateRefNumber();
             $court->fill($this->toSnakeKeys($data))->save();
             DB::commit();
 
