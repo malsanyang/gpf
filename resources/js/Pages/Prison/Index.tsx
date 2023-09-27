@@ -5,25 +5,25 @@ import UserListProps from "../../Models/props_UserItem";
 import {Head, Link} from "@inertiajs/react";
 // @ts-ignore
 import route from 'ziggy';
-import PoliceStationListProps from "../../Models/props_PoliceStationItem";
+import PrisonListProps from "../../Models/props_PrisonItem";
 
-interface PoliceStationIndexPageProps {
-    data: Array<PoliceStationListProps>,
+interface PrisonIndexPageProps {
+    data: Array<PrisonListProps>,
     currentUser: { data: UserListProps } | null,
 }
 
-const Index = ({ data, currentUser } : PoliceStationIndexPageProps) => {
+const Index = ({ data, currentUser } : PrisonIndexPageProps) => {
     return (
         <Layout currentUser={currentUser?.data}>
-            <Head title={'Police Station List'} />
+            <Head title={'Prison List'} />
 
-            <Breadcrumb paths={['police-stations']} />
+            <Breadcrumb paths={['prisons']} />
 
             <Link
-                href={route('police-stations.create', undefined, undefined, undefined)}
+                href={route('prisons.create', undefined, undefined, undefined)}
                 className="flex inline-flex items-center justify-center rounded-md bg-primary py-2 px-2 my-4 text-center font-medium text-white hover:bg-opacity-90 lg:px-2 xl:px-2"
             >
-                Create Station
+                Create Prison
             </Link>
 
             <div className="w-full max-w-full rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
@@ -32,13 +32,13 @@ const Index = ({ data, currentUser } : PoliceStationIndexPageProps) => {
                         <thead>
                         <tr className="bg-gray-2 text-left dark:bg-meta-4">
                             <th className="min-w-[220px] py-4 px-4 font-medium text-black dark:text-white xl:pl-11">
+                                Prison No.
+                            </th>
+                            <th className="min-w-[150px] py-4 px-4 font-medium text-black dark:text-white">
                                 Name
                             </th>
                             <th className="min-w-[150px] py-4 px-4 font-medium text-black dark:text-white">
                                 Location
-                            </th>
-                            <th className="min-w-[150px] py-4 px-4 font-medium text-black dark:text-white">
-                                Telephone No.
                             </th>
                             <th className="py-4 px-4 font-medium text-black dark:text-white">
                                 Actions
@@ -47,21 +47,21 @@ const Index = ({ data, currentUser } : PoliceStationIndexPageProps) => {
                         </thead>
                         <tbody>
 
-                        { data.map(function (station, index){
+                        { data.map(function (prison, index){
                             return (
                                 <tr key={index}>
                                     <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                                        <p className="text-black dark:text-white">{station.name}</p>
+                                        <p className="text-black dark:text-white">{prison.prisonNo}</p>
                                     </td>
                                     <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                                        <p className="text-black dark:text-white">{station.location}</p>
+                                        <p className="text-black dark:text-white">{prison.name}</p>
                                     </td>
                                     <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                                        <p className="text-black dark:text-white">{station.telephoneNo}</p>
+                                        <p className="text-black dark:text-white">{prison.location}</p>
                                     </td>
                                     <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                                         <div className="flex items-center space-x-3.5">
-                                            <Link className="hover:text-primary" href={route('police-stations.show', station.id, undefined, undefined)}>
+                                            <Link className="hover:text-primary" href={route('prisons.show', prison.id, undefined, undefined)}>
                                                 <svg
                                                     className="fill-current"
                                                     width="18"
@@ -81,7 +81,7 @@ const Index = ({ data, currentUser } : PoliceStationIndexPageProps) => {
                                                 </svg>
                                             </Link>
                                             <Link className="hover:text-primary"
-                                                  href={route('police-stations.edit', station.id, undefined, undefined)}>
+                                                  href={route('prisons.edit', prison.id, undefined, undefined)}>
                                                 <svg
                                                     className="fill-current"
                                                     width="18"
@@ -100,7 +100,7 @@ const Index = ({ data, currentUser } : PoliceStationIndexPageProps) => {
                                                 </svg>
                                             </Link>
                                             <Link className="hover:text-primary"
-                                                  href={route('police-stations.delete', station.id, undefined, undefined)}
+                                                  href={route('prisons.delete', prison.id, undefined, undefined)}
                                                   method="delete"
                                                   as="button"
                                                   type="button">

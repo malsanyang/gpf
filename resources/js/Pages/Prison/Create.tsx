@@ -1,32 +1,26 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Layout from "../../Components/Layout/Layout";
 import Breadcrumb from "../../Components/Shared/Breadcrumb";
 import UserListProps from "../../Models/props_UserItem";
-import { Head, useForm } from "@inertiajs/react";
-import PoliceStationListProps from "../../Models/props_PoliceStationItem";
+import {Head, useForm} from "@inertiajs/react";
 
-interface PoliceStationEditPageProps {
-    station: { data: PoliceStationListProps },
+interface PrisonCreatePageProps {
     currentUser: { data: UserListProps } | null,
 }
 
-const Edit = ({ station, currentUser } : PoliceStationEditPageProps) => {
-    const { data, setData, put, processing, errors} = useForm({id: 0, name: '', location: '', telephoneNo: ''});
-
-    useEffect(() => {
-        setData({id: station.data.id, name: station.data.name, location: station.data.location, telephoneNo: station.data.telephoneNo});
-    }, [station])
+const Create = ({ currentUser } : PrisonCreatePageProps) => {
+    const { data, setData, post, processing, errors} = useForm({name: '', location: ''});
 
     function handleSubmit(e: any) {
         e.preventDefault();
-        put(`/police-stations/${station.data.id}`);
+        post('/prisons');
     }
 
     return (
         <Layout currentUser={currentUser?.data}>
-            <Head title={'Police Station Edit'} />
+            <Head title={'Prison Create'} />
 
-            <Breadcrumb paths={['police-stations', 'edit']} />
+            <Breadcrumb paths={['prisons', 'create']} />
 
             <div className="w-full max-w-full rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
                 <div className="max-w-full overflow-x-auto">
@@ -36,7 +30,7 @@ const Edit = ({ station, currentUser } : PoliceStationEditPageProps) => {
                                 <label htmlFor="name" className="mb-2.5 block text-black dark:text-white">Name</label>
                                 <div className="mt-2">
                                     <input className="w-full rounded border-[1.5px] border-stroke bg-white py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
-                                           id="name" value={data.name} autoComplete="name" required onChange={ e => setData(data => ({...data, name: e.target.value}))}
+                                           id="name" value={data.name} autoComplete="name" required onChange={ e => setData('name', e.target.value)}
                                     />
                                 </div>
                                 { errors && errors.name !== undefined && (
@@ -50,7 +44,7 @@ const Edit = ({ station, currentUser } : PoliceStationEditPageProps) => {
                                 <label htmlFor="location" className="mb-2.5 block text-black dark:text-white">Location</label>
                                 <div className="mt-2">
                                     <input className="w-full rounded border-[1.5px] border-stroke bg-white py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
-                                           id="location" type={'text'} value={data.location} autoComplete="location" required onChange={ e => setData(data => ({...data, location: e.target.value}))}
+                                           id="location" type={'text'} value={data.location} autoComplete="location" required onChange={ e => setData('location', e.target.value)}
                                     />
                                 </div>
                                 { errors && errors.location !== undefined && (
@@ -61,23 +55,9 @@ const Edit = ({ station, currentUser } : PoliceStationEditPageProps) => {
                             </div>
 
                             <div>
-                                <label htmlFor="telephoneNo" className="mb-2.5 block text-black dark:text-white">Telephone No.</label>
-                                <div className="mt-2">
-                                    <input className="w-full rounded border-[1.5px] border-stroke bg-white py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
-                                           id="telephoneNo" type={'text'} value={data.telephoneNo} autoComplete="telephoneNo" required onChange={ e => setData(data => ({...data, telephoneNo: e.target.value}))}
-                                    />
-                                </div>
-                                { errors && errors.telephoneNo !== undefined && (
-                                    <div className="flex justify-between">
-                                        <p className="w-full text-sm text-danger">{errors.telephoneNo}</p>
-                                    </div>
-                                )}
-                            </div>
-
-                            <div>
                                 <button type="submit" disabled={processing}
                                         className="flex w-full inline-flex items-center justify-center rounded-md bg-primary py-4 px-10 text-center font-medium text-white hover:bg-opacity-90 lg:px-8 xl:px-10">
-                                    Save
+                                    Create
                                 </button>
                             </div>
                         </form>
@@ -88,4 +68,4 @@ const Edit = ({ station, currentUser } : PoliceStationEditPageProps) => {
     )
 };
 
-export default Edit;
+export default Create;

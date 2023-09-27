@@ -7,6 +7,7 @@ use App\Http\Controllers\CrimeController;
 use App\Http\Controllers\CriminalController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PoliceStationController;
+use App\Http\Controllers\PrisonController;
 use App\Http\Controllers\UserController;
 use App\Library\Auth\LocalPermission;
 use Illuminate\Support\Facades\Route;
@@ -81,6 +82,16 @@ Route::prefix('police-stations')->group(callback: function () {
     Route::post('/', [PoliceStationController::class, 'store'])->name('police-stations.store')->middleware('can:' . LocalPermission::CAN_CREATE_RECORD);
     Route::put('/{id}', [PoliceStationController::class, 'update'])->name('police-stations.update')->middleware('can:' . LocalPermission::CAN_UPDATE_RECORD);
     Route::delete('/{id}', [PoliceStationController::class, 'delete'])->name('police-stations.delete')->middleware('can:' . LocalPermission::CAN_DELETE_RECORD);
+})->middleware('auth');
+
+Route::prefix('prisons')->group(callback: function () {
+    Route::get('/', [PrisonController::class, 'index'])->name('prisons.index')->middleware('can:' . LocalPermission::CAN_VIEW_RECORD);
+    Route::get('/create', [PrisonController::class, 'create'])->name('prisons.create')->middleware('can:' . LocalPermission::CAN_CREATE_RECORD);
+    Route::get('/{id}', [PrisonController::class, 'show'])->name('prisons.show')->middleware('can:' . LocalPermission::CAN_VIEW_RECORD);
+    Route::get('/{id}/edit', [PrisonController::class, 'edit'])->name('prisons.edit')->middleware('can:' . LocalPermission::CAN_UPDATE_RECORD);
+    Route::post('/', [PrisonController::class, 'store'])->name('prisons.store')->middleware('can:' . LocalPermission::CAN_CREATE_RECORD);
+    Route::put('/{id}', [PrisonController::class, 'update'])->name('prisons.update')->middleware('can:' . LocalPermission::CAN_UPDATE_RECORD);
+    Route::delete('/{id}', [PrisonController::class, 'delete'])->name('prisons.delete')->middleware('can:' . LocalPermission::CAN_DELETE_RECORD);
 })->middleware('auth');
 
 Route::prefix('crimes')->group(callback: function () {

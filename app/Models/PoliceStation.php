@@ -18,5 +18,6 @@ class PoliceStation extends Model
     protected $fillable = [
         'name',
         'location',
+        'telephone_no'
     ];
 }
