@@ -3,7 +3,6 @@ import Layout from "../../Components/Layout/Layout";
 import Breadcrumb from "../../Components/Shared/Breadcrumb";
 import UserListProps from "../../Models/props_UserItem";
 import { Head, useForm } from "@inertiajs/react";
-import CitizenListProps from "../../Models/props_CitizenItem";
 import CrimeListProps from "../../Models/props_CrimeItem";
 import CourtListProps from "../../Models/props_CourtItem";
 

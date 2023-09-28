@@ -5,7 +5,6 @@ import UserListProps from "../../Models/props_UserItem";
 import {Head, Link} from "@inertiajs/react";
 // @ts-ignore
 import route from 'ziggy';
-import CourtListProps from "../../Models/props_CourtItem";
 import CrimeListProps from "../../Models/props_CrimeItem";
 
 interface CrimeIndexPageProps {
