@@ -98,6 +98,10 @@ Route::prefix('crimes')->group(callback: function () {
     Route::get('/', [CrimeController::class, 'index'])->name('crimes.index')->middleware('can:' . LocalPermission::CAN_VIEW_RECORD);
     Route::get('/create', [CrimeController::class, 'create'])->name('crimes.create')->middleware('can:' . LocalPermission::CAN_CREATE_RECORD);
     Route::get('/{id}', [CrimeController::class, 'show'])->name('crimes.show')->middleware('can:' . LocalPermission::CAN_VIEW_RECORD);
+    Route::get('/{id}/add-investigation-report', [CrimeController::class, 'addInvestigationReport'])->name('crimes.add_investigation_report')->middleware('can:' . LocalPermission::CAN_ADD_INVESTIGATOR_REPORT);
+    Route::get('/{id}/add-prosecution-report', [CrimeController::class, 'addProsecutionReport'])->name('crimes.add_prosecution_report')->middleware('can:' . LocalPermission::CAN_ADD_PROSECUTION_REPORT);
     Route::post('/', [CrimeController::class, 'store'])->name('crimes.store')->middleware('can:' . LocalPermission::CAN_CREATE_RECORD);
+    Route::put('/{id}/add-investigation-report', [CrimeController::class, 'updateInvestigationReport'])->name('crimes.update_investigation_report')->middleware('can:' . LocalPermission::CAN_ADD_INVESTIGATOR_REPORT);
+    Route::put('/{id}/add-prosecution-report', [CrimeController::class, 'updateProsecutionReport'])->name('crimes.update_prosecution_report')->middleware('can:' . LocalPermission::CAN_ADD_PROSECUTION_REPORT);
     Route::delete('/{id}', [CrimeController::class, 'delete'])->name('crimes.delete')->middleware('can:' . LocalPermission::CAN_DELETE_RECORD);
 })->middleware('auth');
