@@ -61,7 +61,7 @@ const Header = ({sidebarOpen, setSidebarOpen, currentUser}: HeaderProps) => {
                 {/* <!-- Hamburger Toggle BTN --> */}
 
                 <Link className="block flex-shrink-0 lg:hidden" href="/">
-                    <img className="mx-auto h-10 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="Your Company" />
+                    <img className="mx-auto h-10 w-auto" src="/img/logo.png" alt="Your Company" />
                 </Link>
                 </div>
 
