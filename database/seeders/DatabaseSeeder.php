@@ -19,5 +19,6 @@ class DatabaseSeeder extends Seeder
         $this->call(CriminalSeeder::class);
         $this->call(PoliceStationSeeder::class);
         $this->call(PrisonSeeder::class);
+        $this->call(CrimeSeeder::class);
     }
 }
